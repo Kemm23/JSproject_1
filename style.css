@@ -1,0 +1,9 @@
+.nav {
+    font-size: 32px;
+    height: 80px;
+    box-shadow: 0 1px 10px black;
+}
+
+main > div {
+    font-size: 64px;
+}

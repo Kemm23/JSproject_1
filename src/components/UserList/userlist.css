@@ -1,0 +1,29 @@
+#pagination span {
+    margin: 0 10px;
+    border: 1px solid black;
+    padding: 0 10px;
+    background: #3333331c;
+}
+
+#pagination .active {
+    border-color: red;
+}
+
+#pagination span:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.list-search {
+    top: 100%;
+}
+
+.delete {
+    font-size: 32px;
+    transform: translateY(-30%);
+}
+
+.delete:hover {
+    cursor: pointer;
+    color: red;
+}

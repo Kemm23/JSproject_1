@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./signin.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/bootstrap.min.css">
+</head>
+<body>
+    <div class="main">
+
+        <form action="" method="POST" class="form" id="login-form">
+          <h3 class="heading">Log In</h3>
+          <div class="spacer"></div>
+      
+          <div class="form-group">
+            <label for="username" class="form-label">Username</label>
+            <input id="username" rules="required" name="username" type="text" placeholder="VD: Kem" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" rules="required | min: 3" name="password" type="password" placeholder="Enter Your Password" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-link d-flex justify-content-around">
+              <a href="../../../index.html">Home</a>
+              <a href="../SignUp/signup.html">Register</a>
+            </div>
+
+          <button class="form-submit">Sign In</button>
+          <div class="login-message text-center mt-4"></div>
+        </form>
+      </div>
+      <a id="redirect-link" href="../../../index.html"></a>
+      <script src="./signin.js"></script>
+      <script>
+          var form = new Validator('#login-form')
+         form.onsubmit = function(formData) {
+          document.getElementById('redirect-link').click()
+            return console.log(formData)
+         }
+      </script>
+</body>
+</html>

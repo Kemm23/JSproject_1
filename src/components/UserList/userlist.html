@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./userlist.css">
+    <title>List</title>
+</head>
+<body>
+    <a href="../../../index.html">Home</a>
+    <div class="d-flex justify-content-center position-relative">
+        <input type="text" id="search" placeholder="search" oninput="handleSearch()">
+        <ul class="list-search position-absolute">
+        </ul>
+    </div>
+    <ul id="user-list">
+    </ul>
+    <div id="pagination" class="d-flex justify-content-center"></div>
+</body>
+<script src="./userlist.js"></script>
+</html>
