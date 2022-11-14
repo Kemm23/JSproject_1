@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./singup.css">
     <link rel="stylesheet" href="../../assets/bootstrap/bootstrap.min.css">
+    <title>Register</title>
 </head>
 <body>
     <div class="main">
@@ -60,6 +61,8 @@
                 this.lastname = lastname;
                 this.username = username;
                 this.password = password;
+                this.login = false;
+                this.isEditing = false;
               }
           }
           var form = new Validator("#register-form");

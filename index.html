@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./src/assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Project JS</title>
 </head>
 <body>
@@ -15,19 +16,22 @@
                 <a class="mx-5" href="/">Home</a>
                 <a class="mx-5" href="/src/components/UserList/userlist.html">User List</a>
             </div>
-            <div class="nav-item">
-                <a class="mx-5" href="/src/components/SignUp/signup.html">Login / Register</a>
-                <a class="mx-5" href="">User</a>
+            <div id="user-info" class="nav-item mx-5">
+            </div>
+        </div>
+        <div class="detail-info display">
+            <ul>
+            </ul>
+            <div class="d-flex justify-content-around">
+                <button class="logout-btn" onclick="handleLogOut()">Log Out</button>
             </div>
         </div>
     </header>
     <main>
         <div class="text-center mt-5">Page Home</div>
         <div class="text-center mt-5">Welcome to Project</div>
+        <a href="./index.html"></a>
     </main>
-    <script>
-        // const STORAGE_KEY = "Users";
-        // JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    </script>
+    <script src="./index.js"></script>
 </body>
 </html>

@@ -1,3 +1,11 @@
+.font-24 {
+    font-size: 24px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
 #pagination span {
     margin: 0 10px;
     border: 1px solid black;
@@ -14,16 +22,42 @@
     opacity: 0.6;
 }
 
+#search {
+    min-width: 50%;
+}
+
 .list-search {
     top: 100%;
+    list-style: none;
+    padding: 0;
+    left: 25%;
+    background-color: #eee;
+    min-width: 50%;
+    box-shadow: 1px 4px 6px rgb(57, 55, 55);
+    z-index: 1;
+}
+
+.list-search > li{
+    padding: 10px 20px;
+    border-bottom: 1px solid;
+}
+
+#user-list {
+    max-width: 75%;
+    margin: 10% auto 5%;
+}
+
+#user-list > li {
+    padding:10px 0;
+    border-bottom: 1px solid;
 }
 
 .delete {
     font-size: 32px;
-    transform: translateY(-30%);
+    transform: translateY(-6%);
 }
 
-.delete:hover {
+.delete:hover, #user-list .edit-info:hover {
     cursor: pointer;
     color: red;
 }

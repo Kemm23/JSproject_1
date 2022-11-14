@@ -1,9 +1,42 @@
+ul {
+    list-style: none;
+}
+
+#header {
+    position: relative;
+}
+
 .nav {
     font-size: 32px;
     height: 80px;
     box-shadow: 0 1px 10px black;
 }
 
+.detail-info {
+    position: absolute;
+    min-width: 280px;
+    background-color: #eee;
+    right: 30px;
+}
+
+.detail-info.display {
+    display: block;
+}
+
+.detail-info.display {
+    display: none;
+}
+
+.detail-info button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
 main > div {
     font-size: 64px;
+}
+
+#user-info i:hover,  #user-info i:active{
+    cursor: pointer;
+    opacity: 0.8;
 }

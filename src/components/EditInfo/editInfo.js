@@ -3,7 +3,18 @@ function Validator(formSelector) {
     var formElement = document.querySelector(formSelector)
     var formRules = {}
     const users = JSON.parse(localStorage.getItem("users")) || []
-
+//     const users = [
+//     {firstname: "Pham", lastname: "Hoang", username: "Kem", password: "123", login: false, isEditing: false},
+//     {firstname: "Viet", lastname: "Anh", username: "Yasuo", password: "123", login: false, isEditing: false},
+//     {firstname: "Tuan", lastname: "Anh", username: "Yone", password: "123", login: false, isEditing: false},
+//     {firstname: "Hong", lastname: "Nhi", username: "Cat", password: "123", login: true},
+//     {firstname: "Van", lastname: "Anh", username: "Stranger", password: "123", login: false, isEditing: true},
+//     {firstname: "Bich", lastname: "Phuong", username: "Idol", password: "123", login: false, isEditing: false},
+//     {firstname: "Le", lastname: "Hai", username: "Owner", password: "123", login: false, isEditing: false},
+// ]
+    const editUser = users.filter(user => {
+        return user.isEditing
+    })
     /*Quy ước tạo rules:
     -Nếu có lỗi thì return message lỗi 
     -Nếu không có lỗi thì return undefined
@@ -37,56 +48,39 @@ function Validator(formSelector) {
         return Boolean(errorMessage)
     }
 
-    function getDataUser() {
-        var enableInput = formElement.querySelectorAll('[name]:not(meta)')
-        let dataUser = Array.from(enableInput).reduce((values, input) => {
-            values[input.name] = input.value
-            return values
-        }, {})
-        return dataUser
+    function getDataUserEdit() {
+        let enableInput = formElement.querySelectorAll('[name]:not(meta)')
+        Array.from(enableInput).map((input, index) => {
+            input.value = editUser[0][Object.keys(editUser[0])[index]]
+        })
     }
 
-    function handleLogin() {
-        let errorLogin = users.some(user => {
-            const {username, password} = user
-            return  JSON.stringify({username, password}) === JSON.stringify(getDataUser())
+    function handleEditUser() {
+        let enableInput = formElement.querySelectorAll('[name]:not(meta)')
+        Array.from(enableInput).map((input, index) => {
+            editUser[0][Object.keys(editUser[0])[index]] = input.value 
         })
-        if(!errorLogin) {
-            formElement.classList.add('invalid')
-            formElement.querySelector('.login-message').innerText = "Tai khoan ban nhap khong dung"
-        } else {
-            formElement.classList.remove('invalid')
-            formElement.querySelector('.login-message').innerText = ""
-        }
-        return errorLogin
-    }
-
-    function updateLogin() {
-        users.map(user => {
-            const {username, password} = user
-            if (JSON.stringify({username, password}) === JSON.stringify(getDataUser())) {
-                return user.login = true
-            }
+        const newUser = users.map(user => {
+            if(user.isEditing) {
+                return {...editUser[0], isEditing: false}
+            } 
+            return user
         })
-        localStorage.setItem("users", JSON.stringify(users))
+        localStorage.setItem("users", JSON.stringify(newUser))
+        return true
     }
 
     var validatorRules = {
         required(value) {
             return value ? undefined : 'Vui long nhap truong nay'
         },
-        email(value) {
-            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-            return regex.test(value) ? undefined : 'Email ban nhap khong hop le'
-        },
-        min: function(min) {
-            return function(value) {
-                return value.length >= min ? undefined : `Vui long nhap toi thieu ${min} ki tu`
-            }
-        },
+        checked(value) {
+            return !users.some(user => user.username === value) || editUser[0].username === value ? undefined : 'Da ton tai username'
+        }
     } 
     
     if(formElement) {
+        getDataUserEdit()
         var inputs = formElement.querySelectorAll('[name][rules]')
         for(var input of inputs) {
             input.getAttribute('rules').replace(/\s/gi, '').split('|').forEach(inputRule => {
@@ -115,12 +109,11 @@ function Validator(formSelector) {
                     isValid = false
                 }
             }
-            let enableLogin = handleLogin()
-            if(isValid && enableLogin) {
+            if(isValid) {
                 if(typeof _this.onsubmit  === 'function') {
-                    let dataUser = getDataUser()
-                    updateLogin()
-                    _this.onsubmit(dataUser)
+                    if (handleEditUser()) {
+                        _this.onsubmit()
+                    } 
                 } else {
                     formElement.submit()
                 }

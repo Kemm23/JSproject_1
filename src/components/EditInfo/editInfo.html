@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./editInfo.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/bootstrap.min.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="main">
+
+        <form action="" method="POST" class="form" id="edit-form">
+          <h3 class="heading">Edit Information</h3>
+
+          <div class="form-group">
+            <label for="firstname" class="form-label">First Name</label>
+            <input id="firstname" rules="required" name="firstname" type="text" placeholder="VD: Pham" class="form-control">
+            <span class="form-message"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input id="lastname" rules="required" name="lastname" type="text" placeholder="VD: Hoang" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="username" class="form-label">User Name</label>
+            <input id="username" rules="required | checked" name="username" type="text" placeholder="VD: Pham Hoang" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-link d-flex justify-content-around">
+              <a href="../UserList/userlist.html">User List</a>
+          </div>
+             <button class="form-submit">Submit</button>
+        </form>
+      </div>
+      <a id="redirect-link" href="../UserList/userlist.html"></a>
+      <script src="editInfo.js"></script>
+      <script>
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+          var form = new Validator("#edit-form");
+              form.onsubmit = function () {
+              document.getElementById('redirect-link').click()
+          };
+      </script>
+</body>
+</html>
